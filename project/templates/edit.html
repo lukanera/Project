@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit user {% endblock %}
+
+{% block content %}
+    <h1>Edit Student Record</h1>
+        {% for row in rows %}
+        <form action="{{ url_for('editrec') }}" method="POST">
+            <h3>Student ID: {{ row['id']}}</h3>
+            <input type="hidden" name="id" value="{{ row['id'] }}">
+            <br>
+            <label>New username</label>
+            <input type="text" name="name" value="{{ row['name'] }}"/><br>
+            <br>
+            <label>New password</label>
+            <input type="text" name="password" value="{{row['password']}}"/><br>
+            <br>
+            <input type="submit" value="Submit" />
+        </form>
+        {% endfor %}
+    <p>{{ get_flashed_messages() }}</p>
+{% endblock %}
